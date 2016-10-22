@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-awesome-menu'
+  name: 'ember-dynamic-menu'
 };

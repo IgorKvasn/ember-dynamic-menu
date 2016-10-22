@@ -1,0 +1,5 @@
+{{#ember-wormhole to="dynamic-dropdown" renderInPlace=showItem}}
+  {{yield}}
+{{/ember-wormhole}}
+{{!-- this way when we change input's value by JQuery, the change will be handled and propagated by Ember... --}}
+  <input  class="dynamic-menu-item-input" type="checkbox" checked data-priority="{{priority}}"/>

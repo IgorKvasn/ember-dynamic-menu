@@ -1,0 +1,43 @@
+.dynamic-menu-container{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.dynamic-menu-container .dynamic-menu-item, #dynamic-dropdown > *{ /*ember-wormhole moves menu-items into dropdown and it leaves .dynamic-menu-item behind*/
+  display: inline-block;
+}
+
+
+.dynamic-menu-container .dynamic-menu-item.hidden{
+  display: none;
+}
+
+.dynamic-menu-item .dynamic-menu-item-input{
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+#dynamic-dropdown{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  -webkit-transition: all 0.7s ease-out;
+      -moz-transition: all 0.7s ease-out;
+       -ms-transition: all 0.7s ease-out;
+        -o-transition: all 0.7s ease-out;
+           transition: all 0.7s ease-out;
+}
+
+.dropdown-button{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.dropdown-button.hidden{
+  display: none;
+}
