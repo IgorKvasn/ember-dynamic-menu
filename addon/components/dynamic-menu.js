@@ -13,12 +13,14 @@ function getScrollBarWidth () {
 export default Ember.Component.extend({
   layout,
 
+  classNameBindings: ['isPositionBottom:bottom-position:top-position'],
   classNames: ['dynamic-menu'],
 
   dropdownVisible: false,
   itemWidth: 0, //in pixels
   dropdownButtonWidth: 50, //in pixels
   hiddenItems: [],
+  position: 'bottom', //top/bottom
 
   initComponent: Ember.on('didInsertElement', function(){
 
@@ -28,12 +30,29 @@ export default Ember.Component.extend({
       Ember.run.debounce(this, this.hideItems, 200);
     });
 
-
-    Ember.$(this.element).find('#dynamic-dropdown').css('bottom', `${Ember.$(this.element).height()-Ember.$(this.element).find('.dynamic-menu-container').height()}px`);
-
+    this.hideDropdownMenu();
     this.hideItems();
-
   }),
+
+  isPositionBottom: Ember.computed('position', function(){
+    return this.get('position') === 'bottom';
+  }),
+
+  hideDropdownMenu(){
+    if (this.get('isPositionBottom')){
+      Ember.$('#dynamic-dropdown').css('bottom', `${Ember.$(this.element).height()-Ember.$(this.element).find('.dynamic-menu-container').height()}px`);
+    }else{
+      Ember.$('#dynamic-dropdown').css('top', `-${Ember.$(this.element).find('.dynamic-menu-container').height()}px`);
+    }
+  },
+
+  showDropdownMenu(){
+    if (this.get('isPositionBottom')){
+      Ember.$('#dynamic-dropdown').css('bottom', `${Ember.$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
+    }else{
+      Ember.$('#dynamic-dropdown').css('top', `${Ember.$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
+    }
+  },
 
   hideItems: function(){
     let $container = Ember.$(this.element).find('.dynamic-menu-container');
@@ -104,11 +123,10 @@ export default Ember.Component.extend({
   actions: {
     toggleDropdown(){
       this.toggleProperty('dropdownVisible');
-      let $this = Ember.$(this.element);
       if (this.get('dropdownVisible')){
-        $this.find('#dynamic-dropdown').css('bottom', `${Ember.$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
+        this.showDropdownMenu();
       } else {
-        $this.find('#dynamic-dropdown').css('bottom', `${Ember.$(this.element).height()-Ember.$(this.element).find('.dynamic-menu-container').height()}px`).addClass('hidden');
+        this.hideDropdownMenu();
       }
     }
   }
