@@ -3,4 +3,6 @@
 <div class="dynamic-menu-container">
   {{yield}}
 </div>
-<div class="dropdown-button hidden" {{action 'toggleDropdown'}}>drop</div>
+<div class="dropdown-button hidden" {{action 'toggleDropdown'}}>
+  <i aria-hidden="true" class={{dropdownIconClasses}}></i>
+</div>

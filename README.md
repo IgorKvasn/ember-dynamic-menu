@@ -7,7 +7,7 @@ You can assign a priority to each menu item - menu item with the lowest priority
 
 ## Usage
 ```
-{{#dynamic-menu itemWidth=50 dropdownButtonWidth=50 position='bottom'}}
+{{#dynamic-menu itemWidth=50 dropdownButtonWidth=50 position='bottom' dropdownIconClasses='fa fa-caret-down'}}
 
   {{#dynamic-menu-item priority=5}}
     {{!-- any template you want for a menu item --}}
@@ -28,6 +28,7 @@ You can assign a priority to each menu item - menu item with the lowest priority
 
 Note that each menu item *must* have the same width (specified by `itemWidth` property - see example above). To specify dropdown button width use `dropdownButtonWidth` property (see example above).
 You can also specify position of the menu, using property `position` which can be either `top` or `bottom` (default).
+To customize the dropdown button, you can add any CSS classes to the dropdown button using property `dropdownIconClasses` - you can add FontAwesome, glypicons, Icomoon icons or whatever you like.
 
 ## Styling
 ```

@@ -49,6 +49,8 @@
 .dropdown-button{
   position: fixed;
   right: 0;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .dropdown-button.hidden{
