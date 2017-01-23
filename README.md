@@ -5,6 +5,11 @@
 Mobile friendly horizontal menu - on wide enough screens it shows all the menu items side-by-side, but once the screen (window width) is not able to show all the menu items, dropdown button is show.
 You can assign a priority to each menu item - menu item with the lowest priority will be hidden first.
 
+## Install
+```
+ember install ember-dynamic-menu
+```
+
 ## Usage
 ```
 {{#dynamic-menu itemWidth=50 dropdownButtonWidth=50 position='bottom' dropdownIconClasses='fa fa-caret-down'}}
