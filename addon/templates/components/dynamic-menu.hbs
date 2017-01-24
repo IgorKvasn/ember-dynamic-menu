@@ -1,8 +1,9 @@
 <div id="dynamic-dropdown" class="hidden">
 </div>
-<div class="dynamic-menu-container">
+<div class="dynamic-menu-container {{if enableAutoSpacing 'spacing-container' ''}}">
   {{yield}}
-</div>
-<div class="dropdown-button hidden" {{action 'toggleDropdown'}}>
-  <i aria-hidden="true" class={{dropdownIconClasses}}></i>
+
+  <div class="dynamic-menu-item dropdown-button hidden" {{action 'toggleDropdown'}}>
+    <i aria-hidden="true" class={{dropdownIconClasses}}></i>
+  </div>
 </div>

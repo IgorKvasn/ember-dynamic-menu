@@ -21,6 +21,7 @@ export default Ember.Component.extend({
   dropdownButtonWidth: 50, //in pixels
   hiddenItems: [],
   position: 'bottom', //top/bottom
+  enableAutoSpacing: true,
 
   initComponent: Ember.on('didInsertElement', function(){
 

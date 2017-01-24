@@ -1,58 +1,72 @@
-.dynamic-menu-container{
+.dynamic-menu-container {
   position: fixed;
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.dynamic-menu-container .dynamic-menu-item, #dynamic-dropdown > *{ /*ember-wormhole moves menu-items into dropdown and it leaves .dynamic-menu-item behind*/
+.dynamic-menu-container .dynamic-menu-item, #dynamic-dropdown>* {
+  /*ember-wormhole moves menu-items into dropdown and it leaves .dynamic-menu-item behind*/
   display: inline-block;
 }
 
-
-.dynamic-menu-container .dynamic-menu-item.hidden{
+.dynamic-menu-container .dynamic-menu-item.hidden {
   display: none;
 }
 
-.dynamic-menu.bottom-position .dynamic-menu-container{
-    bottom: 0;
+.dynamic-menu.bottom-position .dynamic-menu-container {
+  bottom: 0;
 }
 
-.dynamic-menu.top-position .dynamic-menu-container{
-    top: 0;
+.dynamic-menu.top-position .dynamic-menu-container {
+  top: 0;
 }
 
-.dynamic-menu.top-position .dropdown-button{
-    top:0;
+.dynamic-menu.top-position .dropdown-button {
+  top: 0;
 }
 
-.dynamic-menu.bottom-position .dropdown-button{
-    bottom:0;
+.dynamic-menu.bottom-position .dropdown-button {
+  bottom: 0;
 }
 
-.dynamic-menu-item .dynamic-menu-item-input{
+.dynamic-menu-item .dynamic-menu-item-input {
   display: none;
   width: 0;
   height: 0;
 }
 
-#dynamic-dropdown{
+#dynamic-dropdown {
   position: fixed;
   width: 100%;
   -webkit-transition: all 0.7s ease-out;
-      -moz-transition: all 0.7s ease-out;
-       -ms-transition: all 0.7s ease-out;
-        -o-transition: all 0.7s ease-out;
-           transition: all 0.7s ease-out;
+  -moz-transition: all 0.7s ease-out;
+  -ms-transition: all 0.7s ease-out;
+  -o-transition: all 0.7s ease-out;
+  transition: all 0.7s ease-out;
 }
 
-.dropdown-button{
-  position: fixed;
-  right: 0;
-  vertical-align: middle;
+.dropdown-button {
   text-align: center;
 }
 
-.dropdown-button.hidden{
+.dropdown-button.hidden {
   display: none;
+}
+
+.spacing-container {
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+}
+
+.spacing-container .dynamic-menu-item, .spacing-container .dropdown-button {
+  -webkit-flex: 1 1 0%;
+  -ms-flex: 1 1 0%;
+  flex: 1 1 0%;
+  box-sizing: border-box;
 }
