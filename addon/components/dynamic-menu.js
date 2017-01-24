@@ -36,6 +36,14 @@ export default Ember.Component.extend({
     this.hideItems();
   }),
 
+  dropdownVisibleObserver: Ember.observer('dropdownVisible', function(){
+    if (this.get('dropdownVisible')){
+      this.showDropdownMenu();
+    } else {
+      this.hideDropdownMenu();
+    }
+  }),
+
   isPositionBottom: Ember.computed('position', function(){
     return this.get('position') === 'bottom';
   }),
@@ -79,6 +87,7 @@ export default Ember.Component.extend({
       if (itemsToHide.length > 0){
         Ember.$(this.element).find('.dropdown-button').removeClass('hidden');
       }else{
+        this.set('dropdownVisible', false);
         Ember.$(this.element).find('.dropdown-button').addClass('hidden');
       }
 
@@ -125,11 +134,6 @@ export default Ember.Component.extend({
   actions: {
     toggleDropdown(){
       this.toggleProperty('dropdownVisible');
-      if (this.get('dropdownVisible')){
-        this.showDropdownMenu();
-      } else {
-        this.hideDropdownMenu();
-      }
     }
   }
 });
