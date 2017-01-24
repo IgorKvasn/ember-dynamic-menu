@@ -44,6 +44,9 @@
   -ms-transition: all 0.7s ease-out;
   -o-transition: all 0.7s ease-out;
   transition: all 0.7s ease-out;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .dropdown-button {
@@ -64,7 +67,7 @@
   flex-flow: row nowrap;
 }
 
-.spacing-container .dynamic-menu-item, .spacing-container .dropdown-button {
+.spacing-container .dynamic-menu-item, .spacing-container .dropdown-button, .spacing-container.dynamic-dropdown div{
   -webkit-flex: 1 1 0%;
   -ms-flex: 1 1 0%;
   flex: 1 1 0%;

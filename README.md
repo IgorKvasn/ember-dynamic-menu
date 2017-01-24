@@ -34,6 +34,7 @@ ember install ember-dynamic-menu
 Note that each menu item *must* have the same width (specified by `itemWidth` property - see example above). To specify dropdown button width use `dropdownButtonWidth` property (see example above).
 You can also specify position of the menu, using property `position` which can be either `top` or `bottom` (default).
 To customize the dropdown button, you can add any CSS classes to the dropdown button using property `dropdownIconClasses` - you can add FontAwesome, glypicons, Icomoon icons or whatever you like.
+To make space between menu items equally distributed, you can use `enableAutoSpacing` (true|false) to enable it (true by default) - just beware: your browser must support flexbox.
 
 ## Styling
 ```

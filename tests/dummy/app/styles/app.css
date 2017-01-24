@@ -17,3 +17,7 @@
   height: 50px;
   background-color: blue;
 }
+
+.spacing-container.dynamic-dropdown .item-wrapper div{
+  margin: 0 auto;
+}
