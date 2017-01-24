@@ -5,7 +5,7 @@
   white-space: nowrap;
 }
 
-.dynamic-menu-container .dynamic-menu-item, #dynamic-dropdown>* {
+.dynamic-menu-container .dynamic-menu-item, .dynamic-dropdown>* {
   /*ember-wormhole moves menu-items into dropdown and it leaves .dynamic-menu-item behind*/
   display: inline-block;
 }
@@ -36,7 +36,7 @@
   height: 0;
 }
 
-#dynamic-dropdown {
+.dynamic-dropdown {
   position: fixed;
   width: 100%;
   -webkit-transition: all 0.7s ease-out;
@@ -47,14 +47,24 @@
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
+  text-align: center;
 }
 
 .dropdown-button {
   text-align: center;
 }
 
+.dropdown-button .dropdow-title {
+  text-align: center;
+}
+
 .dropdown-button.hidden {
   display: none;
+}
+
+.dropdown-button .dropdown-icon {
+  margin-top: 0.5em;
+  vertical-align: bottom;
 }
 
 .spacing-container {
@@ -67,7 +77,7 @@
   flex-flow: row nowrap;
 }
 
-.spacing-container .dynamic-menu-item, .spacing-container .dropdown-button, .spacing-container.dynamic-dropdown div{
+.spacing-container .dynamic-menu-item, .spacing-container .dropdown-button, .spacing-container.dynamic-dropdown div {
   -webkit-flex: 1 1 0%;
   -ms-flex: 1 1 0%;
   flex: 1 1 0%;

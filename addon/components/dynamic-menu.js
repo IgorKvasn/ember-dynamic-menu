@@ -22,6 +22,7 @@ export default Ember.Component.extend({
   hiddenItems: [],
   position: 'bottom', //top/bottom
   enableAutoSpacing: true,
+  dropdownTitle: null,
 
   initComponent: Ember.on('didInsertElement', function(){
 
