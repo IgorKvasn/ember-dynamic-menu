@@ -50,8 +50,6 @@ export default Ember.Component.extend({
 
   hideDropdownMenu(){
     let $dropdown = Ember.$('.dynamic-dropdown');
-    $dropdown.addClass('hidden');
-    $dropdown.removeClass('visible');
     if (this.get('isPositionBottom')){
       $dropdown.css('bottom', `${Ember.$(this.element).height()-Ember.$(this.element).find('.dynamic-menu-container').height()}px`);
     }else{
@@ -61,8 +59,6 @@ export default Ember.Component.extend({
 
   showDropdownMenu(){
     let $dropdown = Ember.$('.dynamic-dropdown');
-    $dropdown.addClass('visible');
-    $dropdown.removeClass('hidden');
     if (this.get('isPositionBottom')){
       $dropdown.css('bottom', `${Ember.$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
     }else{
