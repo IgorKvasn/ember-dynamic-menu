@@ -49,18 +49,22 @@ export default Ember.Component.extend({
   }),
 
   hideDropdownMenu(){
+    let $dropdown = Ember.$('.dynamic-dropdown');
+    $dropdown.addClass('hidden');
     if (this.get('isPositionBottom')){
-      Ember.$('#dynamic-dropdown').css('bottom', `${Ember.$(this.element).height()-Ember.$(this.element).find('.dynamic-menu-container').height()}px`);
+      $dropdown.css('bottom', `${Ember.$(this.element).height()-Ember.$(this.element).find('.dynamic-menu-container').height()}px`);
     }else{
-      Ember.$('#dynamic-dropdown').css('top', `-${Ember.$(this.element).find('.dynamic-menu-container').height()}px`);
+      $dropdown.css('top', `-${Ember.$(this.element).find('.dynamic-menu-container').height()}px`);
     }
   },
 
   showDropdownMenu(){
+    let $dropdown = Ember.$('.dynamic-dropdown');
+    $dropdown.addClass('visible');
     if (this.get('isPositionBottom')){
-      Ember.$('#dynamic-dropdown').css('bottom', `${Ember.$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
+      $dropdown.css('bottom', `${Ember.$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
     }else{
-      Ember.$('#dynamic-dropdown').css('top', `${Ember.$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
+      $dropdown.css('top', `${Ember.$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
     }
   },
 
