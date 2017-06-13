@@ -1,4 +1,4 @@
-export function findItemsToHide(containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth, itemWidth){
+export function findItemsToHide(containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth){
     let overflowingSpace = containerScrollWidth - containerWidth;
 
     if (overflowingSpace > 0){
@@ -23,7 +23,7 @@ export function findItemsToHide(containerScrollWidth, containerWidth, itemsDefin
 
         let item = itemsDefinition[priority][i];
         itemsToHide.push(item);
-        overflowingSpace -= itemWidth;
+        overflowingSpace -= item.inputElem.parent('.dynamic-menu-item').width();
 
       }
     }

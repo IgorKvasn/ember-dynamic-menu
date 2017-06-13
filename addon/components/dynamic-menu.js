@@ -25,7 +25,6 @@ export default Ember.Component.extend({
   classNames: ['dynamic-menu'],
 
   dropdownVisible: false,
-  itemWidth: 0, //in pixels
   dropdownButtonWidth: 50, //in pixels
   hiddenItems: [],
   position: 'bottom', //top/bottom
@@ -97,8 +96,7 @@ export default Ember.Component.extend({
         $container.width(),
         itemsDefinition,
         this.get('dropdownButtonWidth'),
-        this.get('scrollbarWidth'),
-        this.get('itemWidth')
+        this.get('scrollbarWidth')
       );
       if (itemsToHide.length > 0) {
         Ember.$(this.element).find('.dropdown-button').removeClass('hidden');

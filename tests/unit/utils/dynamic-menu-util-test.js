@@ -4,7 +4,7 @@ import { module, test } from 'qunit';
 module('Unit | Utility | dynamic menu util');
 
 test('renders all items when there is enough space for them', function(assert) {
-  let containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth, itemWidth;
+  let containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth;
   containerScrollWidth = 100;
   containerWidth = 100;
   itemsDefinition = {
@@ -12,15 +12,14 @@ test('renders all items when there is enough space for them', function(assert) {
   };
   dropdownButtonWidth = 10;
   scrollbarWidth = 5;
-  itemWidth = 10;
 
-  let result = menuUtil.findItemsToHide(containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth, itemWidth);
+  let result = menuUtil.findItemsToHide(containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth);
   assert.ok(result);
   assert.equal(result.length, 0);
 });
 
 test('hides menu items with lowest priority because there is not enough space for them', function(assert) {
-  let containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth, itemWidth;
+  let containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth;
   containerScrollWidth = 60;
   containerWidth = 40;
   itemsDefinition = {
@@ -29,9 +28,8 @@ test('hides menu items with lowest priority because there is not enough space fo
   };
   dropdownButtonWidth = 10;
   scrollbarWidth = 5;
-  itemWidth = 10;
 
-  let result = menuUtil.findItemsToHide(containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth, itemWidth);
+  let result = menuUtil.findItemsToHide(containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth);
   assert.ok(result);
   assert.equal(result.length, 3); //hides 2 menu items because they are overflowing + 1 more item to make speca for a dropdown button
   result.forEach((item)=>{
@@ -40,7 +38,7 @@ test('hides menu items with lowest priority because there is not enough space fo
 });
 
 test('hides menu items with across multiple priorities because there is not enough space for them', function(assert) {
-  let containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth, itemWidth;
+  let containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth;
   containerScrollWidth = 60;
   containerWidth = 20;
   itemsDefinition = {
@@ -49,9 +47,8 @@ test('hides menu items with across multiple priorities because there is not enou
   };
   dropdownButtonWidth = 10;
   scrollbarWidth = 5;
-  itemWidth = 10;
 
-  let result = menuUtil.findItemsToHide(containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth, itemWidth);
+  let result = menuUtil.findItemsToHide(containerScrollWidth, containerWidth, itemsDefinition, dropdownButtonWidth, scrollbarWidth);
   assert.ok(result);
   assert.equal(result.length, 5); //hides 4 menu items because they are overflowing + 1 more item to make speca for a dropdown button
 
