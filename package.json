@@ -1,6 +1,6 @@
 {
   "name": "ember-dynamic-menu",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Dynamic horizontal menu that shows menu items only when there is enough space for them.",
   "directories": {
     "doc": "doc",
