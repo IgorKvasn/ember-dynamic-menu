@@ -1,7 +1,10 @@
-import Ember from 'ember';
+import { schedule } from '@ember/runloop';
+import $ from 'jquery';
+import { not } from '@ember/object/computed';
+import Component from '@ember/component';
 import layout from '../templates/components/dynamic-menu-item';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   classNames: ['dynamic-menu-item'],
@@ -9,15 +12,16 @@ export default Ember.Component.extend({
   priority: 0, //higher priority means, it will stay visible longer
   showItem: true,
 
-  notShowItem: Ember.computed.not('showItem'),
+  notShowItem: not('showItem'),
 
-  initVisibilityListener: Ember.on('didInsertElement', function(){
-    let $showItemCheck = Ember.$(this.element).find('.dynamic-menu-item-input');
+  didInsertElement(){
+    this._super(...arguments);
+    let $showItemCheck = $(this.element).find('.dynamic-menu-item-input');
     $showItemCheck.on('change', ()=>{
-      Ember.run.schedule('actions', () => {
+      schedule('actions', () => {
         this.set('showItem', $showItemCheck.prop('checked'));
       });
 
     });
-  })
+  }
 });

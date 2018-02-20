@@ -1,4 +1,8 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
+import { observer, computed } from '@ember/object';
+import { debounce, scheduleOnce } from '@ember/runloop';
+import Component from '@ember/component';
+import $ from 'jquery';
 import layout from '../templates/components/dynamic-menu';
 import {
   findItemsToHide
@@ -6,19 +10,19 @@ import {
 
 
 function getScrollBarWidth() {
-  var $outer = Ember.$('<div>').css({
+  var $outer = $('<div>').css({
       visibility: 'hidden',
       width: 100,
       overflow: 'scroll'
     }).appendTo('body'),
-    widthWithScroll = Ember.$('<div>').css({
+    widthWithScroll = $('<div>').css({
       width: '100%'
     }).appendTo($outer).outerWidth();
   $outer.remove();
   return 100 - widthWithScroll;
 }
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   classNameBindings: ['isPositionBottom:bottom-position:top-position'],
@@ -26,24 +30,25 @@ export default Ember.Component.extend({
 
   dropdownVisible: false,
   dropdownButtonWidth: 50, //in pixels
+  // eslint-disable-next-line ember/avoid-leaking-state-in-ember-objects
   hiddenItems: [],
   position: 'bottom', //top/bottom
   enableAutoSpacing: true,
   dropdownTitle: null,
 
-  initComponent: Ember.on('didInsertElement', function() {
-
+  didInsertElement() {
+    this._super(...arguments);
     this.set('scrollbarWidth', getScrollBarWidth());
 
-    Ember.$(window).resize(() => {
-      Ember.run.debounce(this, this.hideItems, 200);
+    $(window).resize(() => {
+      debounce(this, this.hideItems, 200);
     });
 
     this.hideDropdownMenu();
     this.hideItems();
-  }),
+  },
 
-  dropdownVisibleObserver: Ember.observer('dropdownVisible', function() {
+  dropdownVisibleObserver: observer('dropdownVisible', function() {
     if (this.get('dropdownVisible')) {
       this.showDropdownMenu();
     } else {
@@ -51,40 +56,40 @@ export default Ember.Component.extend({
     }
   }),
 
-  isPositionBottom: Ember.computed('position', function() {
+  isPositionBottom: computed('position', function() {
     return this.get('position') === 'bottom';
   }),
 
   hideDropdownMenu() {
-    let $dropdown = Ember.$('.dynamic-dropdown');
+    let $dropdown = $('.dynamic-dropdown');
     if (this.get('isPositionBottom')) {
-      $dropdown.css('bottom', `${Ember.$(this.element).height()-Ember.$(this.element).find('.dynamic-menu-container').height()}px`);
+      $dropdown.css('bottom', `${$(this.element).height()-$(this.element).find('.dynamic-menu-container').height()}px`);
     } else {
-      $dropdown.css('top', `-${Ember.$(this.element).find('.dynamic-menu-container').height()}px`);
+      $dropdown.css('top', `-${$(this.element).find('.dynamic-menu-container').height()}px`);
     }
   },
 
   showDropdownMenu() {
-    let $dropdown = Ember.$('.dynamic-dropdown');
+    let $dropdown = $('.dynamic-dropdown');
     if (this.get('isPositionBottom')) {
-      $dropdown.css('bottom', `${Ember.$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
+      $dropdown.css('bottom', `${$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
     } else {
-      $dropdown.css('top', `${Ember.$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
+      $dropdown.css('top', `${$(this.element).find('.dynamic-menu-container').height()}px`).removeClass('hidden');
     }
   },
 
   hideItems: function() {
-    let $container = Ember.$(this.element).find('.dynamic-menu-container');
+    let $container = $(this.element).find('.dynamic-menu-container');
     $container.css('overflow-x', 'scroll');
 
-    let allItems = Ember.$(this.element).find('.dynamic-menu-item-input');
+    let allItems = $(this.element).find('.dynamic-menu-item-input');
     allItems.each((index, item) => {
-      Ember.$(item).prop('checked', true).trigger('change');
+      $(item).prop('checked', true).trigger('change');
     });
 
-    Ember.run.scheduleOnce('afterRender', this, function() {
+    scheduleOnce('afterRender', this, function() {
 
-      if (Ember.isEmpty($container)) {
+      if (isEmpty($container)) {
         //this element does not exist anymore - it was removed from DOM
         return;
       }
@@ -99,10 +104,10 @@ export default Ember.Component.extend({
         this.get('scrollbarWidth')
       );
       if (itemsToHide.length > 0) {
-        Ember.$(this.element).find('.dropdown-button').removeClass('hidden');
+        $(this.element).find('.dropdown-button').removeClass('hidden');
       } else {
         this.set('dropdownVisible', false);
-        Ember.$(this.element).find('.dropdown-button').addClass('hidden');
+        $(this.element).find('.dropdown-button').addClass('hidden');
       }
 
       $container.css('overflow-x', 'hidden');
@@ -123,8 +128,8 @@ export default Ember.Component.extend({
    * @return {[type]} [description]
    */
   createItemsDefinition: function() {
-    let items = Ember.$(this.element).find('.dynamic-menu-item-input').map((index, elem) => {
-      let $elem = Ember.$(elem);
+    let items = $(this.element).find('.dynamic-menu-item-input').map((index, elem) => {
+      let $elem = $(elem);
       return {
         inputElem: $elem,
         priority: parseInt($elem.data('priority'), 10) || 0
