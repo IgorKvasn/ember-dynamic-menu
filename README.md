@@ -6,6 +6,17 @@ Mobile friendly horizontal menu - on wide enough screens it shows all the menu i
 You can assign a priority to each menu item - menu item with the lowest priority will be hidden first.
 
 ## Install
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v3.20 or above
+* Ember CLI v3.20 or above
+* Node.js v12 or above
+
+
+Installation
+------------------------------------------------------------------------------
+
 ```
 ember install ember-dynamic-menu
 ```
