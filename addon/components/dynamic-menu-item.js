@@ -1,5 +1,5 @@
 import { schedule } from '@ember/runloop';
-import $ from 'jquery';
+import $ from 'cash-dom';
 import { not } from '@ember/object/computed';
 import Component from '@ember/component';
 import layout from '../templates/components/dynamic-menu-item';
@@ -14,14 +14,13 @@ export default Component.extend({
 
   notShowItem: not('showItem'),
 
-  didInsertElement(){
+  didInsertElement() {
     this._super(...arguments);
     let $showItemCheck = $(this.element).find('.dynamic-menu-item-input');
-    $showItemCheck.on('change', ()=>{
+    $showItemCheck.on('change', () => {
       schedule('actions', () => {
         this.set('showItem', $showItemCheck.prop('checked'));
       });
-
     });
-  }
+  },
 });
